@@ -1,0 +1,673 @@
+{% extends 'base.html' %}
+{% block pagetitle %}
+Plant Disease Detection
+{% endblock pagetitle %}
+{% block body %}
+<style>
+  :root {
+    --primary: #2E7D32;
+    --primary-dark: #1B5E20;
+    --primary-light: #C8E6C9;
+    --accent: #FFAB00;
+    --accent-dark: #FF8F00;
+    --light: #F1F8E9;
+    --white: #FFFFFF;
+    --dark: #263238;
+  }
+  
+  body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--light);
+    color: var(--dark);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Animated background for hero section */
+  .hero-section {
+    background: linear-gradient(-45deg, #2E7D32, #1B5E20, #4CAF50, #81C784);
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
+    color: white;
+    padding: 120px 0;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  @keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  .hero-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 3.5rem;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
+  }
+
+  .hero-subtitle {
+    font-size: 1.5rem;
+    margin-bottom: 30px;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    opacity: 0.9;
+  }
+
+  .section-title {
+    font-family: 'Montserrat', sans-serif;
+    color: var(--primary-dark);
+    position: relative;
+    display: inline-block;
+    margin-bottom: 50px;
+    font-size: 2.5rem;
+  }
+
+  .section-title:after {
+    content: '';
+    position: absolute;
+    width: 50%;
+    height: 5px;
+    background: linear-gradient(90deg, var(--primary), var(--accent));
+    bottom: -15px;
+    left: 25%;
+    border-radius: 5px;
+  }
+
+  /* Floating animation for cards */
+  @keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0px); }
+  }
+
+  .plant-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 30px;
+    padding: 20px 0;
+  }
+
+  .plant-card {
+    background-color: var(--white);
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    transition: all 0.5s ease;
+    position: relative;
+    animation: float 6s ease-in-out infinite;
+  }
+
+  /* Different animation delays for staggered effect */
+  .plant-card:nth-child(1) { animation-delay: 0s; }
+  .plant-card:nth-child(2) { animation-delay: 0.5s; }
+  .plant-card:nth-child(3) { animation-delay: 1s; }
+  .plant-card:nth-child(4) { animation-delay: 1.5s; }
+  .plant-card:nth-child(5) { animation-delay: 2s; }
+  .plant-card:nth-child(6) { animation-delay: 2.5s; }
+  .plant-card:nth-child(7) { animation-delay: 3s; }
+  .plant-card:nth-child(8) { animation-delay: 3.5s; }
+  .plant-card:nth-child(9) { animation-delay: 4s; }
+  .plant-card:nth-child(10) { animation-delay: 4.5s; }
+  .plant-card:nth-child(11) { animation-delay: 5s; }
+  .plant-card:nth-child(12) { animation-delay: 5.5s; }
+  .plant-card:nth-child(13) { animation-delay: 6s; }
+  .plant-card:nth-child(14) { animation-delay: 6.5s; }
+
+  .plant-card:hover {
+    transform: translateY(-10px) scale(1.05);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+    animation: none !important;
+  }
+
+  .plant-card-img {
+    height: 220px;
+    width: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+
+  .plant-card:hover .plant-card-img {
+    transform: scale(1.1);
+  }
+
+  .plant-card-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(transparent, rgba(0,0,0,0.8));
+    padding: 20px;
+    color: white;
+    transform: translateY(100%);
+    transition: transform 0.3s ease;
+  }
+
+  .plant-card:hover .plant-card-overlay {
+    transform: translateY(0);
+  }
+
+  .plant-card-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.5rem;
+    margin-bottom: 5px;
+  }
+
+  .plant-card-btn {
+    background-color: var(--accent);
+    color: var(--dark);
+    border: none;
+    border-radius: 50px;
+    padding: 8px 20px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    transform: scale(0.9);
+    opacity: 0;
+    transition: all 0.3s ease 0.1s;
+  }
+
+  .plant-card:hover .plant-card-btn {
+    transform: scale(1);
+    opacity: 1;
+  }
+
+  .plant-card-btn:hover {
+    background-color: var(--accent-dark);
+    transform: translateY(-3px) scale(1.05) !important;
+    box-shadow: 0 5px 15px rgba(255, 171, 0, 0.4);
+  }
+
+  .detect-btn {
+    background-color: var(--accent);
+    border-color: var(--accent-dark);
+    color: var(--dark);
+    font-weight: 600;
+    padding: 12px 30px;
+    border-radius: 50px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .detect-btn:hover {
+    background-color: var(--accent-dark);
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(255, 171, 0, 0.4);
+  }
+
+  .detect-btn:after {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -60%;
+    width: 200%;
+    height: 200%;
+    background: rgba(255, 255, 255, 0.2);
+    transform: rotate(30deg);
+    transition: all 0.3s;
+  }
+
+  .detect-btn:hover:after {
+    left: 100%;
+  }
+
+  /* Search bar styling */
+  .search-container {
+    max-width: 600px;
+    margin: 0 auto 40px;
+    position: relative;
+  }
+
+  .search-input {
+    width: 100%;
+    padding: 15px 20px;
+    border-radius: 50px;
+    border: none;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+    padding-left: 50px;
+  }
+
+  .search-input:focus {
+    outline: none;
+    box-shadow: 0 5px 25px rgba(0,0,0,0.15);
+    transform: translateY(-2px);
+  }
+
+  .search-icon {
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--primary);
+  }
+
+  /* Stats counter */
+  .stats-section {
+    background-color: var(--primary-dark);
+    color: white;
+    padding: 60px 0;
+    text-align: center;
+  }
+
+  .stat-item {
+    padding: 20px;
+  }
+
+  .stat-number {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+    font-family: 'Montserrat', sans-serif;
+  }
+
+  .stat-label {
+    font-size: 1.2rem;
+    opacity: 0.9;
+  }
+
+  /* Testimonials */
+  .testimonial-section {
+    padding: 80px 0;
+    background-color: var(--white);
+  }
+
+  .testimonial-card {
+    background-color: var(--light);
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    margin: 15px;
+    position: relative;
+  }
+
+  .testimonial-card:before {
+    content: """;
+    font-family: Georgia, serif;
+    font-size: 60px;
+    color: var(--primary-light);
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    line-height: 1;
+  }
+
+  .testimonial-text {
+    font-style: italic;
+    margin-bottom: 20px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .testimonial-author {
+    font-weight: 600;
+    color: var(--primary-dark);
+  }
+
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .hero-title {
+      font-size: 2.2rem;
+    }
+    
+    .hero-subtitle {
+      font-size: 1.2rem;
+    }
+    
+    .section-title {
+      font-size: 2rem;
+    }
+
+    .plant-grid {
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    }
+  }
+</style>
+
+<!-- Hero Section with animated background -->
+<section class="hero-section">
+  <div class="container">
+    <h1 class="hero-title animate__animated animate__fadeInDown">Plant Disease Detection</h1>
+    <p class="hero-subtitle animate__animated animate__fadeInUp">disease detection for healthier crops and gardens</p>
+    <a href="/index" class="btn btn-lg detect-btn animate__animated animate__pulse animate__infinite">
+      <i class="fas fa-search me-2"></i> Detect Diseases Now
+    </a>
+  </div>
+</section>
+
+<!-- Stats Counter -->
+<section class="stats-section">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4">
+        <div class="stat-item">
+          <div class="stat-number" id="plant-counter">14</div>
+          <div class="stat-label">Supported Plants</div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="stat-item">
+          <div class="stat-number" id="disease-counter">38</div>
+          <div class="stat-label">Diseases Detected</div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="stat-item">
+          <div class="stat-number" id="user-counter">5000+</div>
+          <div class="stat-label">Happy Users</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Plant Showcase Section -->
+<section class="py-5 bg-white">
+  <div class="container">
+    <h2 class="text-center section-title">Supported Plants</h2>
+    <p class="text-center lead mb-5">Our system can detect diseases in the following plants:</p>
+    
+    <!-- Search Bar -->
+    <div class="search-container">
+      <i class="fas fa-search search-icon"></i>
+      <input type="text" class="search-input" id="plant-search" placeholder="Search for a plant...">
+    </div>
+    
+    <div class="plant-grid" id="plant-container">
+      <!-- Apple -->
+      <div class="plant-card" data-name="apple">
+        <img src="https://post.healthline.com/wp-content/uploads/2020/09/Do_Apples_Affect_Diabetes_and_Blood_Sugar_Levels-732x549-thumbnail-1-732x549.jpg" class="plant-card-img" alt="Apple">
+        <div class="plant-card-overlay">
+          <h3 class="plant-card-title">Apple</h3>
+          <a href="/index?plant=apple" class="plant-card-btn">
+            <i class="fas fa-search me-2"></i> Detect
+          </a>
+        </div>
+      </div>
+      
+      <!-- Blueberry -->
+      <div class="plant-card" data-name="blueberry">
+        <img src="https://www.supermarketperimeter.com/ext/resources/0430-blueberries.png?t=1588260305&width=1080" class="plant-card-img" alt="Blueberry">
+        <div class="plant-card-overlay">
+          <h3 class="plant-card-title">Blueberry</h3>
+          <a href="/index?plant=blueberry" class="plant-card-btn">
+            <i class="fas fa-search me-2"></i> Detect
+          </a>
+        </div>
+      </div>
+      
+      <!-- Cherry -->
+      <div class="plant-card" data-name="cherry">
+        <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBwgHBgkIBwgKCgkLDRYPDQwMDRsUFRAWIB0iIiAdHx8kKDQsJCYxJx8fLT0tMTU3Ojo6Iys/RD84QzQ5OjcBCgoKDQwNGg8PGjclHyU3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3N//AABEIAHcAuQMBIgACEQEDEQH/xAAcAAACAwEBAQEAAAAAAAAAAAAABgQFBwMBAgj/xAA7EAACAQMCAwUECAUEAwAAAAABAgMABBEFIQGSMRTiQVFhFHGRoQcjMkJSgbHBJGLR4fAVM4LxNENT/8QAGgEAAgMBAQAAAAAAAAAAAAAAAAMCBAUBBv/EACoRAAIDAAICAQIEBwAAAAAAAAABAgMREiEEMUETUQUiI2EUFTJCcYGR/9oADAMBAAIRAxEAPwDcaKKKACiiigAooooA+WYKpLEADrSzq+tZlEcJJU/h8an8Q3hggEaZy/UjwFJ1xcuSsgaNUxnLZ6+FZ/lWt/kQucvg9kuSdltnbwzyf2qM9wGyZIZY/JsEAePurhLcycwjVkd5GACglyW9wzVhp+iMk8dxesHkU5Eak8q48/M/KqKjyeIVhwtIpb7Ig5lj3YSTDun3eZ38vzqfFpsKrmZ3kIO+/Kpx5r8qmlgXd8DI7q16idpKkK5JPdA86dGhL2dw80vSheXTKIuzhXvuQoG/gvwpoXTrNVH1CHH4hn9a62lultAsSZwPE+JrtsBWhVRCC3B8ejNPpCb2XVVjtO0Egt+05IYQeQZ5c+GKdDYwalZ2l5GezuBErRzodxkdPUVUT2wvtR1+8deaFYFtEPngZb5mrPheRks/ZJhyvEBhc+BGcj0pUElY1nTLE7Ngl8o5PxF7BN7NqELmVTgtGM/njy93yqXFxDYSgYdhzDIyhqr4ysVf2e7UHnB5CR4HwP60pB5EblkGCxIDBBumM+R36/91Ut8m6ibhuoqym0zSk1SzcjE6jPntUmOaOT/AG3Vvcc1nEVzt93ONxsDn1rvHdPHJzROxkbFNiK5H8Rs/uc5mg5r2lCy4juIpAlxyzRH7wOGFM1neQXkIlgfmU/I1oUeXXb0n2TTJNFFFWDp5mvKp9d1q30e1E9wCQzBQo6k0v3P0k6XGp7NHZvAE4qLkl7LdXh3WrYxY0UjH6TbQdYCP/ANq+4/pLsW+1Ew+NR+qvsY/4d5K/uGj0Vn8f0j2DnBjYfGp9vx1pUxwZOT3muqyL+SF+DfH3FjXRXK3njuIllhcOjDII8a61MpvsKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigD/2Q==" class="plant-card-img" alt="Cherry">
+        <div class="plant-card-overlay">
+          <h3 class="plant-card-title">Cherry</h3>
+          <a href="/index?plant=cherry" class="plant-card-btn">
+            <i class="fas fa-search me-2"></i> Detect
+          </a>
+        </div>
+      </div>
+      
+      <!-- Corn -->
+      <div class="plant-card" data-name="corn">
+        <img src="https://www.mayoclinichealthsystem.org/-/media/national-files/images/hometown-health/2018/corn.jpg" class="plant-card-img" alt="Corn">
+        <div class="plant-card-overlay">
+          <h3 class="plant-card-title">Corn</h3>
+          <a href="/index?plant=corn" class="plant-card-btn">
+            <i class="fas fa-search me-2"></i> Detect
+          </a>
+        </div>
+      </div>
+      
+      <!-- Grape -->
+      <div class="plant-card" data-name="grape">
+        <img src="https://i.ndtvimg.com/i/2015-09/grapes_625x350_61443376353.jpg" class="plant-card-img" alt="Grape">
+        <div class="plant-card-overlay">
+          <h3 class="plant-card-title">Grape</h3>
+          <a href="/index?plant=grape" class="plant-card-btn">
+            <i class="fas fa-search me-2"></i> Detect
+          </a>
+        </div>
+      </div>
+      
+      <!-- Orange -->
+      <div class="plant-card" data-name="orange">
+        <img src="https://www.irishtimes.com/polopoly_fs/1.3923226.1560339148!/image/image.jpg_gen/derivatives/ratio_1x1_w1200/image.jpg" class="plant-card-img" alt="Orange">
+        <div class="plant-card-overlay">
+          <h3 class="plant-card-title">Orange</h3>
+          <a href="/index?plant=orange" class="plant-card-btn">
+            <i class="fas fa-search me-2"></i> Detect
+          </a>
+        </div>
+      </div>
+      
+      <!-- Peach -->
+      <div class="plant-card" data-name="peach">
+        <img src="https://img.webmd.com/dtmcms/live/webmd/consumer_assets/site_images/articles/health_tools/the_health_benefits_of_peaches_slideshow/thinkstock_rf_peaches.jpg?resize=650px:*" class="plant-card-img" alt="Peach">
+        <div class="plant-card-overlay">
+          <h3 class="plant-card-title">Peach</h3>
+          <a href="/index?plant=peach" class="plant-card-btn">
+            <i class="fas fa-search me-2"></i> Detect
+          </a>
+        </div>
+      </div>
+      
+      <!-- Pepper Bell -->
+      <div class="plant-card" data-name="pepper bell">
+        <img src="https://snaped.fns.usda.gov/sites/default/files/styles/crop_ratio_7_5/public/seasonal-produce/2018-05/bell%20peppers.jpg?h=9f30bee3&itok=PKmzyeNv" class="plant-card-img" alt="Pepper Bell">
+        <div class="plant-card-overlay">
+          <h3 class="plant-card-title">Pepper Bell</h3>
+          <a href="/index?plant=pepper_bell" class="plant-card-btn">
+            <i class="fas fa-search me-2"></i> Detect
+          </a>
+        </div>
+      </div>
+      
+      <!-- Potato -->
+      <div class="plant-card" data-name="potato">
+        <img src="https://m.economictimes.com/thumb/height-450,width-600,imgsize-111140,msid-72862126/potato-getty.jpg" class="plant-card-img" alt="Potato">
+        <div class="plant-card-overlay">
+          <h3 class="plant-card-title">Potato</h3>
+          <a href="/index?plant=potato" class="plant-card-btn">
+            <i class="fas fa-search me-2"></i> Detect
+          </a>
+        </div>
+      </div>
+      
+      <!-- Raspberry -->
+      <div class="plant-card" data-name="raspberry">
+        <img src="https://i0.wp.com/cdn-prod.medicalnewstoday.com/content/images/articles/326/326272/raspberries-with-ketones-in-a-bowl.jpg?w=1155&h=1541" class="plant-card-img" alt="Raspberry">
+        <div class="plant-card-overlay">
+          <h3 class="plant-card-title">Raspberry</h3>
+          <a href="/index?plant=raspberry" class="plant-card-btn">
+            <i class="fas fa-search me-2"></i> Detect
+          </a>
+        </div>
+      </div>
+      
+      <!-- Soybean -->
+      <div class="plant-card" data-name="soybean">
+        <img src="https://m.economictimes.com/thumb/msid-66988154,width-1200,height-900,resizemode-4,imgsize-211276/soyabean-agencies.jpg" class="plant-card-img" alt="Soybean">
+        <div class="plant-card-overlay">
+          <h3 class="plant-card-title">Soybean</h3>
+          <a href="/index?plant=soybean" class="plant-card-btn">
+            <i class="fas fa-search me-2"></i> Detect
+          </a>
+        </div>
+      </div>
+      
+      <!-- Squash -->
+      <div class="plant-card" data-name="squash">
+        <img src="https://post.healthline.com/wp-content/uploads/2020/08/squash-fruit-or-vegetable-732x549-thumbnail-732x549.jpg" class="plant-card-img" alt="Squash">
+        <div class="plant-card-overlay">
+          <h3 class="plant-card-title">Squash</h3>
+          <a href="/index?plant=squash" class="plant-card-btn">
+            <i class="fas fa-search me-2"></i> Detect
+          </a>
+        </div>
+      </div>
+      
+      <!-- Strawberry -->
+      <div class="plant-card" data-name="strawberry">
+        <img src="https://images.indianexpress.com/2020/02/strawberry-1200.jpg" class="plant-card-img" alt="Strawberry">
+        <div class="plant-card-overlay">
+          <h3 class="plant-card-title">Strawberry</h3>
+          <a href="/index?plant=strawberry" class="plant-card-btn">
+            <i class="fas fa-search me-2"></i> Detect
+          </a>
+        </div>
+      </div>
+      
+      <!-- Tomato -->
+      <div class="plant-card" data-name="tomato">
+        <img src="https://images-prod.healthline.com/hlcmsresource/images/AN_images/tomatoes-1296x728-feature.jpg" class="plant-card-img" alt="Tomato">
+        <div class="plant-card-overlay">
+          <h3 class="plant-card-title">Tomato</h3>
+          <a href="/index?plant=tomato" class="plant-card-btn">
+            <i class="fas fa-search me-2"></i> Detect
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Features Section -->
+<section class="py-5" style="background: linear-gradient(135deg, var(--primary-light), var(--white));">
+  <div class="container">
+    <h2 class="text-center section-title">How It Works</h2>
+    
+    <div class="row text-center">
+      <div class="col-md-4 mb-4">
+        <div class="p-4">
+          <div class="feature-icon-container">
+            <i class="fas fa-camera fa-3x mb-3 feature-icon" style="color: var(--primary);"></i>
+          </div>
+          <h3 class="h4">1. Upload Image</h3>
+          <p>Take a clear photo of the affected plant leaves or fruits and upload it to our system.</p>
+        </div>
+      </div>
+      
+      <div class="col-md-4 mb-4">
+        <div class="p-4">
+          <div class="feature-icon-container">
+            <i class="fas fa-brain fa-3x mb-3 feature-icon" style="color: var(--primary);"></i>
+          </div>
+          <h3 class="h4">2.Analysis</h3>
+          <p>Our advanced machine learning model analyzes the image to detect disease patterns.</p>
+        </div>
+      </div>
+      
+      <div class="col-md-4 mb-4">
+        <div class="p-4">
+          <div class="feature-icon-container">
+            <i class="fas fa-file-medical-alt fa-3x mb-3 feature-icon" style="color: var(--primary);"></i>
+          </div>
+          <h3 class="h4">3. Get Results</h3>
+          <p>Receive instant diagnosis and treatment recommendations for your plant.</p>
+        </div>
+      </div>
+    </div>
+    
+    <div class="text-center mt-4">
+      <a href="/index" class="btn btn-lg detect-btn">
+        <i class="fas fa-play me-2"></i> Try It Now
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- Testimonials Section -->
+<section class="testimonial-section">
+  <div class="container">
+    <h2 class="text-center section-title">What Our Users Say</h2>
+    
+    <div class="row">
+      <div class="col-md-4">
+        <div class="testimonial-card">
+          <p class="testimonial-text">This tool saved my entire tomato crop last season. The early detection allowed me to treat the disease before it spread.</p>
+          <p class="testimonial-author">- Sarah K., Home Gardener</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="testimonial-card">
+          <p class="testimonial-text">As a small-scale farmer, this AI detection system has been invaluable for maintaining healthy plants with minimal chemical use.</p>
+          <p class="testimonial-author">- Miguel R., Organic Farmer</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="testimonial-card">
+          <p class="testimonial-text">The accuracy is impressive! It correctly identified a rare disease that even my local extension office struggled with.</p>
+          <p class="testimonial-author">- Dr. Ellen T., Botanist</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  // Animated counter for stats
+  function animateValue(id, start, end, duration) {
+    const obj = document.getElementById(id);
+    let startTimestamp = null;
+    const step = (timestamp) => {
+      if (!startTimestamp) startTimestamp = timestamp;
+      const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+      obj.innerHTML = Math.floor(progress * (end - start) + start);
+      if (progress < 1) {
+        window.requestAnimationFrame(step);
+      }
+    };
+    window.requestAnimationFrame(step);
+  }
+
+  // Start counters when stats section comes into view
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        animateValue("plant-counter", 0, 14, 2000);
+        animateValue("disease-counter", 0, 38, 2000);
+        // User counter already has "+" so we don't animate it
+        observer.unobserve(entry.target);
+      }
+    });
+  }, {threshold: 0.5});
+
+  observer.observe(document.querySelector(".stats-section"));
+
+  // Plant search functionality
+  document.getElementById("plant-search").addEventListener("input", function() {
+    const searchTerm = this.value.toLowerCase();
+    const plants = document.querySelectorAll(".plant-card");
+    
+    plants.forEach(plant => {
+      const plantName = plant.getAttribute("data-name");
+      if (plantName.includes(searchTerm)) {
+        plant.style.display = "block";
+      } else {
+        plant.style.display = "none";
+      }
+    });
+  });
+
+  // Add hover effect to feature icons
+  const featureIcons = document.querySelectorAll(".feature-icon");
+  featureIcons.forEach(icon => {
+    icon.addEventListener("mouseenter", function() {
+      this.style.transform = "scale(1.2) rotate(10deg)";
+      this.style.color = "var(--accent)";
+    });
+    icon.addEventListener("mouseleave", function() {
+      this.style.transform = "scale(1)";
+      this.style.color = "var(--primary)";
+    });
+  });
+</script>
+
+{% endblock body %}

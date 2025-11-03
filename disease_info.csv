@@ -1,0 +1,235 @@
+index,disease_name,description,Possible Steps,image_url
+0,Apple : Scab,"Apple scab is a fungal disease caused by Venturia inaequalis that affects both leaves and fruit. It appears as olive-green to brown lesions on leaves and dark, scabby spots on fruit. Severe infections can cause premature leaf drop, reducing tree vigor and fruit quality over time. The fungus overwinters in fallen leaves and spreads via rain splash in spring.","1. Plant resistant varieties like 'Liberty' or 'Enterprise'
+2. Apply dormant sprays in early spring before bud break
+3. Use fungicides containing myclobutanil or sulfur during wet periods
+4. Rake and destroy fallen leaves in autumn
+5. Prune trees to improve air circulation
+6. Apply 3-4 inches of mulch around base (not touching trunk)",https://extension.umn.edu/sites/extension.umn.edu/files/apple-scab-1.jpg
+1,Apple : Black Rot,"Black rot is a fungal disease caused by Botryosphaeria obtusa that affects leaves, fruit, and branches. It causes purple leaf spots, fruit rot with concentric rings, and branch cankers. The disease thrives in warm, humid conditions and can lead to significant yield loss if untreated.","1. Prune infected branches 12-15 inches below cankers
+2. Disinfect tools between cuts with 10% bleach solution
+3. Apply copper fungicide at green tip stage
+4. Remove mummified fruit from trees
+5. Improve air circulation through proper pruning
+6. Avoid wounding tree bark",https://www.gardeningknowhow.com/wp-content/uploads/2016/07/black-rot-apple.jpg
+2,Apple : Cedar rust,"Cedar apple rust is a fungal disease requiring both apple trees and junipers to complete its lifecycle. Bright orange spots appear on leaves in spring, eventually causing yellowing and premature defoliation. Severe infections reduce fruit quality and tree vigor.","1. Remove nearby junipers if possible
+2. Apply fungicides at pink bud stage and every 10-14 days during wet weather
+3. Plant resistant varieties like 'Redfree' or 'William's Pride'
+4. Use neem oil as organic control
+5. Rake and destroy fallen leaves
+6. Maintain proper tree spacing for air flow",https://www.planetnatural.com/wp-content/uploads/2012/12/apple-rust.jpg
+3,Apple : Healthy,"Healthy apple trees have vibrant green leaves, strong new growth, and produce abundant, high-quality fruit. Proper care includes balanced nutrition, adequate water, and preventive disease management. Apples provide dietary fiber, vitamin C, and antioxidants beneficial for heart health.","1. Test soil every 2-3 years
+2. Apply balanced fertilizer (10-10-10) in early spring
+3. Water deeply (1-2 inches weekly) during dry spells
+4. Mulch with 4-6 inches of organic material
+5. Prune annually during dormancy
+6. Monitor for pests and diseases weekly",https://www.gardeningknowhow.com/wp-content/uploads/2021/07/healthy-apple-tree.jpg
+4,Background Without Leaves,"No plant leaf detected in image. Please upload a clear photo of a single plant leaf against a plain background for accurate disease identification. Ensure the leaf is well-lit and shows both upper and lower surfaces if possible.","1. Use a solid-colored background
+2. Ensure good lighting without shadows
+3. Capture both sides of the leaf
+4. Focus on one leaf per image
+5. Avoid damaged or torn leaves
+6. Include a reference object for scale",https://cdn.pixabay.com/photo/2017/01/31/23/42/background-2027327_960_720.png
+5,Blueberry : Healthy,"Healthy blueberry bushes have uniform green leaves, strong cane growth, and productive fruit yields. They prefer acidic soil (pH 4.5-5.5) and consistent moisture. Blueberries are rich in antioxidants, vitamin C, and fiber, supporting heart and brain health.","1. Maintain soil pH with sulfur amendments
+2. Apply pine needle mulch annually
+3. Water with 1-2 inches weekly
+4. Prune old canes (over 6 years) in winter
+5. Use netting to protect fruit from birds
+6. Fertilize with ammonium sulfate in spring",https://www.gardeningknowhow.com/wp-content/uploads/2021/06/healthy-blueberry-bush.jpg
+6,Cherry : Powdery Mildew,"Powdery mildew appears as white fungal growth on cherry leaves and shoots, causing distortion and stunting. Unlike other fungi, it thrives in humid conditions without free water. Severe infections reduce fruit quality and winter hardiness.","1. Plant resistant varieties like 'Stella' or 'Sweetheart'
+2. Apply sulfur or potassium bicarbonate fungicides
+3. Prune for improved air circulation
+4. Avoid overhead irrigation
+5. Remove infected shoots during dormancy
+6. Use horticultural oil as organic control",https://www.gardeningknowhow.com/wp-content/uploads/2017/07/cherry-powdery-mildew.jpg
+7,Cherry : Healthy,"Healthy cherry trees have glossy green leaves, strong scaffold branches, and abundant fruit production. Cherries contain anthocyanins that reduce inflammation and melatonin that regulates sleep cycles. Sweet and sour varieties have different growth habits.","1. Annual pruning to maintain open center
+2. Apply balanced fertilizer in early spring
+3. Water deeply during fruit development
+4. Use reflective mulch to enhance color
+5. Harvest when fruit is fully colored
+6. Protect from birds with netting",https://www.gardeningknowhow.com/wp-content/uploads/2021/07/healthy-cherry-tree.jpg
+8,Corn : Cercospora Leaf Spot | Gray Leaf Spot,"Gray leaf spot causes rectangular lesions bordered by leaf veins that eventually turn brown and kill leaf tissue. The fungus survives in crop debris and spreads during warm, humid weather, potentially reducing yields by 50% in severe cases.","1. Rotate crops with non-grass species
+2. Use resistant hybrids when available
+3. Apply fungicides at disease onset
+4. Plow under crop residue after harvest
+5. Space plants for better air flow
+6. Avoid excessive nitrogen fertilization",https://crop-protection-network.s3.amazonaws.com/articles/NLB-Daren-Mueller-02.jpg
+9,Corn : Common Rust,"Common rust appears as cinnamon-brown pustules on both leaf surfaces that rupture to release spores. The disease develops in moderate temperatures (60-77°F) with high humidity and can reduce photosynthesis when severe.","1. Plant early-maturing hybrids
+2. Apply fungicides at first sign of disease
+3. Avoid overhead irrigation
+4. Remove volunteer corn plants
+5. Use balanced fertility program
+6. Consider biological controls like Bacillus subtilis",https://cropwatch.unl.edu/plantdisease/corn/common-rust
+10,Corn : Northern Leaf Blight,"Northern corn leaf blight causes long, cigar-shaped lesions that may coalesce and kill entire leaves. The fungus overwinters in residue and spreads during wet weather, with yield losses up to 30% in susceptible hybrids.","1. Select hybrids with partial resistance
+2. Apply fungicides during silking stage
+3. Rotate crops with soybeans or wheat
+4. Bury crop residue after harvest
+5. Avoid continuous corn planting
+6. Monitor fields weekly after tasseling",https://crop-protection-network.s3.amazonaws.com/articles/NLB-Daren-Mueller-02.jpg
+11,Corn : Healthy,"Healthy corn plants have deep green leaves, strong stalks, and well-filled ears. Corn provides complex carbohydrates, fiber, and essential minerals like magnesium and phosphorus. The waxy cuticle helps protect against environmental stress.","1. Plant when soil reaches 50°F
+2. Use starter fertilizer at planting
+3. Maintain consistent moisture during pollination
+4. Side-dress nitrogen when plants are knee-high
+5. Control weeds early
+6. Harvest when kernels reach milk stage",https://www.gardeningknowhow.com/wp-content/uploads/2021/07/healthy-corn-field.jpg
+12,Grape : Black Rot,"Black rot causes brown leaf spots with black fruiting bodies and mummified berries. The fungus infects during warm, wet periods and can destroy entire clusters if left uncontrolled. It overwinters in mummies and infected canes.","1. Remove and destroy all mummies
+2. Apply fungicides from bud break through 4 weeks after bloom
+3. Prune to improve air circulation
+4. Use trellising to keep clusters separated
+5. Plant resistant varieties like 'Cayuga White'
+6. Avoid overhead irrigation",https://www.gardeningknowhow.com/wp-content/uploads/2017/06/grape-black-rot.jpg
+13,Grape : Esca | Black Measles,"Esca is a complex trunk disease causing tiger-stripe leaf patterns, berry spotting, and vine decline. Multiple fungi colonize the vascular system, blocking water flow. Symptoms may appear suddenly or develop over several years.","1. Make clean pruning cuts close to the trunk
+2. Apply wound protectants after pruning
+3. Remove severely infected vines
+4. Avoid mechanical trunk injuries
+5. Maintain balanced vine vigor
+6. Consider preventive fungicide injections",https://www.gardeningknowhow.com/wp-content/uploads/2021/07/grape-esca.jpg
+14,Grape : Leaf Blight | Isariopsis Leaf Spot,"Leaf blight causes angular brown lesions that may coalesce and cause premature defoliation. The disease spreads during rainy periods and weakens vines, reducing winter hardiness and fruit quality.","1. Apply copper fungicides early in season
+2. Remove basal leaves after fruit set
+3. Use drip irrigation instead of overhead
+4. Space vines properly for air movement
+5. Rake and destroy fallen leaves
+6. Maintain balanced nutrition",https://www.gardeningknowhow.com/wp-content/uploads/2021/07/grape-leaf-blight.jpg
+15,Grape : Healthy,"Healthy grapevines have uniform leaf color, strong shoot growth, and balanced fruit loads. Grapes contain resveratrol, a polyphenol with potential heart health benefits, along with vitamins C and K.","1. Prune annually during dormancy
+2. Train vines to appropriate system
+3. Thin clusters for better quality
+4. Monitor soil moisture with tensiometers
+5. Apply mulch to conserve moisture
+6. Harvest at optimal brix levels",https://www.gardeningknowhow.com/wp-content/uploads/2021/07/healthy-grape-vine.jpg
+16,Orange : Haunglongbing | Citrus Greening,"Citrus greening causes yellow mottled leaves, lopsided fruit, and bitter juice. Spread by Asian citrus psyllids, this bacterial disease has no cure and eventually kills trees. Early detection is critical for management.","1. Remove infected trees immediately
+2. Control psyllids with systemic insecticides
+3. Use reflective mulch to deter psyllids
+4. Plant disease-free nursery stock
+5. Monitor for symptoms monthly
+6. Support beneficial insect populations",https://www.gardeningknowhow.com/wp-content/uploads/2021/07/citrus-greening.jpg
+17,Peach : Bacterial Spot,"Bacterial spot causes angular leaf spots and fruit pitting, especially in warm, wet weather. The pathogen overwinters in cankers and spreads through rain splash, potentially defoliating trees by midsummer.","1. Plant resistant varieties like 'Coralstar'
+2. Apply copper sprays at petal fall
+3. Use windbreaks to reduce leaf wetness
+4. Avoid excessive nitrogen fertilization
+5. Prune to improve air circulation
+6. Remove severely infected branches",https://www.gardeningknowhow.com/wp-content/uploads/2016/07/peach-bacterial-spot.jpg
+18,Peach : Healthy,"Healthy peach trees have glossy green leaves, smooth bark, and abundant fruiting wood. Peaches provide vitamin A, potassium, and antioxidants that may support skin health and digestion.","1. Prune to open center structure
+2. Thin fruit to 6-8 inches apart
+3. Irrigate during dry periods
+4. Apply dormant oil for scale control
+5. Harvest when fruit separates easily
+6. Protect from late frosts",https://www.gardeningknowhow.com/wp-content/uploads/2021/07/healthy-peach-tree.jpg
+19,Pepper bell : Bacterial Spot,"Bacterial spot causes water-soaked leaf lesions that turn brown with yellow halos. The disease spreads rapidly in warm, wet conditions and can defoliate plants, leading to sunscalded fruit.","1. Use pathogen-free seed
+2. Rotate crops for 2-3 years
+3. Apply copper bactericides preventively
+4. Avoid working with wet plants
+5. Space plants for good air flow
+6. Remove infected plant debris",https://www.gardeningknowhow.com/wp-content/uploads/2016/07/pepper-bacterial-spot.jpg
+20,Pepper bell : Healthy,"Healthy pepper plants have deep green leaves, sturdy stems, and abundant fruit set. Bell peppers are rich in vitamin C (especially red varieties), vitamin A, and various antioxidants.","1. Use row covers for early plantings
+2. Maintain even soil moisture
+3. Stake plants for fruit support
+4. Harvest regularly to promote production
+5. Monitor for blossom end rot
+6. Fertilize with calcium nitrate",https://www.gardeningknowhow.com/wp-content/uploads/2021/07/healthy-bell-pepper.jpg
+21,Potato : Early Blight,"Early blight causes concentric ring lesions on leaves and stems, progressing from lower leaves upward. The fungus survives in soil and plant debris, spreading during warm, humid weather with alternating wet/dry periods.","1. Rotate crops for 3-4 years
+2. Use certified disease-free seed potatoes
+3. Apply chlorothalonil or copper fungicides
+4. Maintain adequate potassium levels
+5. Hill plants to prevent tuber exposure
+6. Destroy volunteer potato plants",https://www.gardeningknowhow.com/wp-content/uploads/2017/06/potato-early-blight.jpg
+22,Potato : Late Blight,"Late blight causes water-soaked lesions that rapidly expand in cool, wet weather. The same pathogen caused the Irish Potato Famine and can destroy entire fields in favorable conditions.","1. Plant resistant varieties like 'Defender'
+2. Apply fungicides before infection
+3. Destroy cull piles and volunteers
+4. Avoid overhead irrigation
+5. Harvest before vines die completely
+6. Cure tubers properly before storage",https://www.gardeningknowhow.com/wp-content/uploads/2017/06/potato-late-blight.jpg
+23,Potato : Healthy,"Healthy potato plants have sturdy stems, uniform leaf color, and well-developed tubers. Potatoes provide complex carbohydrates, vitamin B6, and more potassium than bananas.","1. Plant when soil reaches 45°F
+2. Hill plants when 6-8 inches tall
+3. Maintain consistent moisture
+4. Use straw mulch for weed control
+5. Harvest after vines die back
+6. Store in cool, dark conditions",https://www.gardeningknowhow.com/wp-content/uploads/2021/07/healthy-potato-plants.jpg
+24,Raspberry : Healthy,"Healthy raspberry canes have bright green leaves, sturdy upright growth, and productive fruiting laterals. Raspberries are exceptionally high in ellagic acid, a compound with potential anti-cancer properties.","1. Prune floricanes after fruiting
+2. Maintain narrow rows (12-18 inches)
+3. Use trellising for support
+4. Apply balanced fertilizer in spring
+5. Renew planting every 8-10 years
+6. Harvest every 2-3 days at peak season",https://www.gardeningknowhow.com/wp-content/uploads/2021/07/healthy-raspberry-canes.jpg
+25,Soybean : Healthy,"Healthy soybean plants have trifoliate leaves with uniform color and well-filled pods. Soybeans provide complete plant protein, isoflavones, and omega-3 fatty acids beneficial for heart health.","1. Inoculate seed with rhizobia bacteria
+2. Plant when soil reaches 55°F
+3. Maintain proper pH (6.0-6.8)
+4. Control weeds early
+5. Harvest when pods are dry but before shattering
+6. Rotate with corn or small grains",https://www.gardeningknowhow.com/wp-content/uploads/2021/07/healthy-soybean-field.jpg
+26,Squash : Powdery Mildew,"Powdery mildew appears as white fungal patches on leaves that eventually turn brown and crisp. Unlike other fungi, it thrives in humid conditions without free water and can reduce yields by affecting photosynthesis.","1. Plant resistant varieties
+2. Apply baking soda solution (1 tbsp/gallon)
+3. Use neem oil or sulfur sprays
+4. Space plants for good air circulation
+5. Remove severely infected leaves
+6. Avoid overhead watering",https://www.gardeningknowhow.com/wp-content/uploads/2017/06/squash-powdery-mildew.jpg
+27,Strawberry : Leaf Scorch,"Leaf scorch causes small purple spots that coalesce into larger lesions with dark fruiting bodies. The fungus overwinters in infected leaves and spreads during wet conditions, potentially defoliating plants.","1. Remove old leaves after harvest
+2. Apply fungicides during flower bud emergence
+3. Use drip irrigation instead of overhead
+4. Renovate beds annually
+5. Space plants properly
+6. Rotate planting sites every 3-4 years",https://www.gardeningknowhow.com/wp-content/uploads/2017/06/strawberry-leaf-scorch.jpg
+28,Strawberry : Healthy,"Healthy strawberry plants have dark green leaves, vigorous runners, and abundant fruit production. Strawberries are exceptionally high in vitamin C and manganese, with anti-inflammatory benefits.","1. Renew beds after 3-4 years
+2. Apply straw mulch for weed control
+3. Remove first-year flowers on June bearers
+4. Irrigate during fruit development
+5. Protect blooms from late frosts
+6. Harvest when fully red",https://www.gardeningknowhow.com/wp-content/uploads/2021/07/healthy-strawberry-plants.jpg
+29,Tomato : Bacterial Spot,"Bacterial spot causes small, water-soaked leaf lesions that turn brown with yellow halos. The disease spreads rapidly in warm, wet weather and can defoliate plants, reducing fruit quality and yield.","1. Use disease-free seed
+2. Treat seeds with hot water (122°F for 25 minutes)
+3. Apply copper bactericides preventively
+4. Stake plants for better air flow
+5. Avoid working with wet plants
+6. Rotate crops for 2-3 years",https://www.gardeningknowhow.com/wp-content/uploads/2017/06/tomato-bacterial-spot.jpg
+30,Tomato : Early Blight,"Early blight causes concentric bull's-eye lesions on leaves, stems, and fruit. The fungus survives in plant debris and spreads during warm, humid weather with alternating wet/dry periods.","1. Rotate crops for 3-4 years
+2. Apply chlorothalonil or copper fungicides
+3. Remove lower leaves as plant grows
+4. Mulch to prevent soil splash
+5. Stake plants for better air circulation
+6. Destroy infected plant debris",https://www.gardeningknowhow.com/wp-content/uploads/2017/06/tomato-early-blight.jpg
+31,Tomato : Late Blight,"Late blight causes water-soaked lesions that rapidly expand under cool, wet conditions. The same pathogen caused the Irish Potato Famine and can destroy entire plantings in favorable weather.","1. Plant resistant varieties
+2. Apply fungicides preventively
+3. Avoid overhead irrigation
+4. Remove volunteer tomato/potato plants
+5. Space plants for good air flow
+6. Destroy infected plants immediately",https://www.gardeningknowhow.com/wp-content/uploads/2017/06/tomato-late-blight.jpg
+32,Tomato : Leaf Mold,"Leaf mold causes yellow upper leaf surfaces with olive-green fungal growth underneath. The disease thrives in high humidity (85%+) and can defoliate plants in greenhouse environments.","1. Reduce humidity through ventilation
+2. Apply copper or potassium bicarbonate sprays
+3. Space plants properly
+4. Remove infected leaves promptly
+5. Sterilize greenhouse structures annually
+6. Use resistant varieties in protected culture",https://www.gardeningknowhow.com/wp-content/uploads/2017/06/tomato-leaf-mold.jpg
+33,Tomato : Septoria Leaf Spot,"Septoria leaf spot causes small circular lesions with dark margins and light centers. The fungus spreads through rain splash and can defoliate plants from the bottom upward in wet weather.","1. Mulch to prevent soil splash
+2. Remove infected lower leaves
+3. Apply chlorothalonil fungicides
+4. Rotate crops for 2-3 years
+5. Avoid overhead irrigation
+6. Destroy infected plant debris",https://www.gardeningknowhow.com/wp-content/uploads/2017/06/tomato-septoria-leaf-spot.jpg
+34,Tomato : Spider Mites | Two-Spotted Spider Mite,"Spider mites cause stippling on leaves that progresses to bronzing and webbing. Populations explode in hot, dry conditions and can defoliate plants rapidly if unchecked.","1. Spray plants with strong water jets
+2. Apply insecticidal soap or neem oil
+3. Release predatory mites (Phytoseiulus persimilis)
+4. Avoid broad-spectrum insecticides
+5. Maintain proper irrigation
+6. Remove severely infested leaves",https://www.gardeningknowhow.com/wp-content/uploads/2017/06/tomato-spider-mites.jpg
+35,Tomato : Target Spot,"Target spot causes circular lesions with concentric rings on leaves, stems, and fruit. The disease spreads during warm, humid weather and can cause significant defoliation in tropical regions.","1. Use drip irrigation instead of overhead
+2. Apply chlorothalonil fungicides
+3. Stake plants for better air flow
+4. Remove infected plant material
+5. Rotate crops with non-solanaceous species
+6. Avoid working with wet plants",https://www.gardeningknowhow.com/wp-content/uploads/2017/06/tomato-target-spot.jpg
+36,Tomato : Yellow Leaf Curl Virus,"Tomato yellow leaf curl virus causes upward leaf curling, yellowing, and stunting. Spread by whiteflies, this disease can cause 100% yield loss in susceptible varieties without management.","1. Use resistant varieties
+2. Control whiteflies with insecticides
+3. Remove infected plants immediately
+4. Use reflective mulch to deter whiteflies
+5. Eliminate weed hosts
+6. Screen greenhouse openings",https://www.gardeningknowhow.com/wp-content/uploads/2017/06/tomato-yellow-leaf-curl.jpg
+37,Tomato : Mosaic Virus,"Tomato mosaic virus causes mottled light and dark green leaf patterns and stunted growth. The virus spreads mechanically through contact and can persist in plant debris for years.","1. Use certified disease-free seed
+2. Disinfect tools with 10% bleach solution
+3. Remove infected plants immediately
+4. Control weed hosts
+5. Wash hands before handling plants
+6. Rotate crops for 2-3 years",https://www.gardeningknowhow.com/wp-content/uploads/2017/06/tomato-mosaic-virus.jpg
+38,Tomato : Healthy,"Healthy tomato plants have dark green leaves, sturdy stems, and abundant fruit set. Tomatoes are rich in lycopene, an antioxidant linked to reduced risk of heart disease and certain cancers.","1. Plant when soil reaches 60°F
+2. Bury stems deep when transplanting
+3. Mulch to conserve moisture
+4. Prune suckers on indeterminate varieties
+5. Fertilize with balanced nutrients
+6. Harvest at breaker stage for best flavor",https://www.gardeningknowhow.com/wp-content/uploads/2021/07/healthy-tomato-plant.jpg

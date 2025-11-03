@@ -1,0 +1,602 @@
+{% extends 'base.html' %}
+{% block pagetitle %}
+Supplement Market
+{% endblock pagetitle %}
+
+{% block body %}
+<style>
+  :root {
+    --primary: #388E3C;
+    --primary-dark: #1B5E20;
+    --primary-light: #C8E6C9;
+    --accent: #FFA000;
+    --accent-dark: #FF8F00;
+    --light: #F1F8E9;
+    --white: #FFFFFF;
+    --dark: #263238;
+    --red: #E53935;
+    --red-dark: #C62828;
+    --blue: #1E88E5;
+    --blue-dark: #1565C0;
+  }
+  
+  /* Animated gradient background */
+  .market-hero {
+    background: linear-gradient(-45deg, #388E3C, #1B5E20, #4CAF50, #81C784);
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
+    padding: 100px 0 60px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    color: white;
+  }
+
+  @keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+  
+  .market-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 3.5rem;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
+    position: relative;
+    display: inline-block;
+  }
+  
+  .market-title:after {
+    content: '';
+    position: absolute;
+    width: 50%;
+    height: 4px;
+    background: var(--accent);
+    bottom: -15px;
+    left: 25%;
+    border-radius: 2px;
+  }
+  
+  .market-subtitle {
+    font-size: 1.3rem;
+    max-width: 700px;
+    margin: 0 auto 30px;
+    opacity: 0.9;
+  }
+  
+  /* Floating animation for cards */
+  @keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0px); }
+  }
+
+  .product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 30px;
+    padding: 40px 0;
+  }
+  
+  .product-card {
+    background-color: var(--white);
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+    transition: all 0.5s ease;
+    position: relative;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    animation: float 6s ease-in-out infinite;
+    border: 1px solid rgba(0,0,0,0.05);
+  }
+
+  /* Staggered animation delays */
+  .product-card:nth-child(1) { animation-delay: 0s; }
+  .product-card:nth-child(2) { animation-delay: 0.5s; }
+  .product-card:nth-child(3) { animation-delay: 1s; }
+  .product-card:nth-child(4) { animation-delay: 1.5s; }
+  .product-card:nth-child(5) { animation-delay: 2s; }
+  .product-card:nth-child(6) { animation-delay: 2.5s; }
+  .product-card:nth-child(7) { animation-delay: 3s; }
+  .product-card:nth-child(8) { animation-delay: 3.5s; }
+  .product-card:nth-child(9) { animation-delay: 4s; }
+  .product-card:nth-child(10) { animation-delay: 4.5s; }
+  .product-card:nth-child(11) { animation-delay: 5s; }
+  .product-card:nth-child(12) { animation-delay: 5.5s; }
+
+  .product-card:hover {
+    transform: translateY(-15px) scale(1.02);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+    animation: none !important;
+  }
+  
+  .product-badge {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    padding: 6px 15px;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    z-index: 2;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+  }
+  
+  .healthy-badge {
+    background-color: var(--primary);
+    color: white;
+  }
+  
+  .diseased-badge {
+    background-color: var(--red);
+    color: white;
+  }
+  
+  .product-image-container {
+    height: 250px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #f5f5f5, #e0e0e0);
+    position: relative;
+  }
+  
+  .product-image {
+    max-width: 90%;
+    max-height: 90%;
+    object-fit: contain;
+    transition: all 0.5s ease;
+    z-index: 1;
+  }
+  
+  .product-card:hover .product-image {
+    transform: scale(1.1);
+  }
+  
+  .product-info {
+    padding: 25px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .product-category {
+    font-size: 0.9rem;
+    color: var(--primary);
+    margin-bottom: 8px;
+    font-weight: 600;
+  }
+  
+  .product-disease {
+    font-size: 1rem;
+    color: var(--dark);
+    margin-bottom: 12px;
+    font-weight: 500;
+  }
+  
+  .product-name {
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: var(--dark);
+    flex-grow: 1;
+    line-height: 1.4;
+  }
+  
+  .product-btn {
+    background-color: var(--primary);
+    color: white;
+    border: none;
+    border-radius: 50px;
+    padding: 12px 25px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    text-align: center;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .product-btn:hover {
+    background-color: var(--primary-dark);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(56, 142, 60, 0.3);
+  }
+  
+  .product-btn:after {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -60%;
+    width: 200%;
+    height: 200%;
+    background: rgba(255, 255, 255, 0.2);
+    transform: rotate(30deg);
+    transition: all 0.3s;
+  }
+  
+  .product-btn:hover:after {
+    left: 100%;
+  }
+  
+  .diseased-btn {
+    background-color: var(--red);
+  }
+  
+  .diseased-btn:hover {
+    background-color: var(--red-dark);
+    box-shadow: 0 8px 20px rgba(229, 57, 53, 0.3);
+  }
+  
+  .filter-container {
+    display: flex;
+    justify-content: center;
+    margin: 30px 0;
+    flex-wrap: wrap;
+    gap: 15px;
+  }
+  
+  .filter-btn {
+    padding: 10px 25px;
+    border-radius: 50px;
+    background-color: var(--white);
+    border: 2px solid var(--primary-light);
+    color: var(--primary-dark);
+    font-weight: 600;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  .filter-btn:hover, .filter-btn.active {
+    background-color: var(--primary);
+    color: white;
+    border-color: var(--primary);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(56, 142, 60, 0.2);
+  }
+  
+  .filter-btn i {
+    font-size: 1rem;
+  }
+
+  /* Stats counter section */
+  .stats-section {
+    background-color: var(--primary-dark);
+    color: white;
+    padding: 60px 0;
+    text-align: center;
+  }
+
+  .stat-item {
+    padding: 20px;
+  }
+
+  .stat-number {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+    font-family: 'Montserrat', sans-serif;
+  }
+
+  .stat-label {
+    font-size: 1.2rem;
+    opacity: 0.9;
+  }
+
+  /* Testimonials */
+  .testimonial-section {
+    padding: 80px 0;
+    background-color: var(--white);
+  }
+
+  .testimonial-card {
+    background-color: var(--light);
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    margin: 15px;
+    position: relative;
+  }
+
+  .testimonial-card:before {
+    content: """;
+    font-family: Georgia, serif;
+    font-size: 60px;
+    color: var(--primary-light);
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    line-height: 1;
+  }
+
+  .testimonial-text {
+    font-style: italic;
+    margin-bottom: 20px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .testimonial-author {
+    font-weight: 600;
+    color: var(--primary-dark);
+  }
+
+  /* Search bar */
+  .search-container {
+    max-width: 600px;
+    margin: 0 auto 40px;
+    position: relative;
+  }
+
+  .search-input {
+    width: 100%;
+    padding: 15px 20px;
+    border-radius: 50px;
+    border: none;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+    padding-left: 50px;
+  }
+
+  .search-input:focus {
+    outline: none;
+    box-shadow: 0 5px 25px rgba(0,0,0,0.15);
+    transform: translateY(-2px);
+  }
+
+  .search-icon {
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--primary);
+  }
+
+  @media (max-width: 768px) {
+    .market-title {
+      font-size: 2.5rem;
+    }
+    
+    .market-subtitle {
+      font-size: 1.1rem;
+    }
+    
+    .product-grid {
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 20px;
+    }
+
+    .product-card {
+      animation: none;
+    }
+
+    .product-card:hover {
+      transform: translateY(-5px);
+    }
+  }
+</style>
+
+<!-- Hero Section with Animated Gradient -->
+<section class="market-hero">
+  <div class="container">
+    <h1 class="market-title">🌱 Plant Supplement Market 🌱</h1>
+    <p class="market-subtitle">Premium quality supplements & fertilizers to nurture your plants back to health</p>
+  </div>
+</section>
+
+
+<!-- Product Search -->
+<div class="container">
+  <div class="search-container">
+    <i class="fas fa-search search-icon"></i>
+    <input type="text" class="search-input" id="product-search" placeholder="Search for supplements or fertilizers...">
+  </div>
+</div>
+
+<!-- Filter Buttons -->
+<div class="container">
+  <div class="filter-container">
+    <button class="filter-btn active" data-filter="all">
+      <i class="fas fa-boxes"></i> All Products
+    </button>
+    <button class="filter-btn" data-filter="supplement">
+      <i class="fas fa-pills"></i> Supplements
+    </button>
+    <button class="filter-btn" data-filter="fertilizer">
+      <i class="fas fa-seedling"></i> Fertilizers
+    </button>
+  </div>
+</div>
+
+<!-- Product Grid -->
+<div class="container">
+  <div class="product-grid" id="product-container">
+    {% for index in range(0,supplement_name | length) %}
+    {% if index != 4 %}
+    <div class="product-card" 
+         data-category="{% if index==3 or index==5 or index==7 or index==11 or index==15 or index==18 or index==20 or index==23 or index==24 or index==25 or index==28 or index==38 %}fertilizer{% else %}supplement{% endif %}"
+         data-name="{{supplement_name[index] | lower}}">
+      
+      <!-- Product Badge -->
+      <div class="product-badge {% if index==3 or index==5 or index==7 or index==11 or index==15 or index==18 or index==20 or index==23 or index==24 or index==25 or index==28 or index==38 %}healthy-badge{% else %}diseased-badge{% endif %}">
+        {% if index==3 or index==5 or index==7 or index==11 or index==15 or index==18 or index==20 or index==23 or index==24 or index==25 or index==28 or index==38 %}
+          <i class="fas fa-seedling me-1"></i> Fertilizer
+        {% else %}
+          <i class="fas fa-pills me-1"></i> Supplement
+        {% endif %}
+      </div>
+      
+      <!-- Product Image -->
+      <div class="product-image-container">
+        <img src="{{supplement_image[index]}}" class="product-image" alt="{{supplement_name[index]}}">
+      </div>
+      
+      <!-- Product Info -->
+      <div class="product-info">
+        <span class="product-category">For {{disease[index]}}</span>
+        <h3 class="product-name">{{supplement_name[index]}}</h3>
+        
+        <!-- Buy Button -->
+        <a target="_blank" href="{{buy[index]}}">
+          <button class="product-btn {% if not (index==3 or index==5 or index==7 or index==11 or index==15 or index==18 or index==20 or index==23 or index==24 or index==25 or index==28 or index==38) %}diseased-btn{% endif %}">
+            <i class="fas fa-shopping-cart me-2"></i> Buy Now
+          </button>
+        </a>
+      </div>
+    </div>
+    {% endif %}
+    {% endfor %}
+  </div>
+</div>
+
+<!-- Testimonials Section -->
+<section class="testimonial-section">
+  <div class="container">
+    <h2 class="text-center section-title">What Our Customers Say</h2>
+    
+    <div class="row">
+      <div class="col-md-4">
+        <div class="testimonial-card">
+          <p class="testimonial-text">These supplements saved my entire tomato garden from blight. The results were visible within a week of application!</p>
+          <p class="testimonial-author">- Sarah J., Home Gardener</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="testimonial-card">
+          <p class="testimonial-text">As an organic farmer, I appreciate the natural ingredients in these products. They're effective without harmful chemicals.</p>
+          <p class="testimonial-author">- Miguel R., Organic Farmer</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="testimonial-card">
+          <p class="testimonial-text">The fertilizer boosted my crop yield by 30% this season. I'll definitely be ordering more for next year.</p>
+          <p class="testimonial-author">- David K., Commercial Grower</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  // Animated counter for stats
+  function animateValue(id, start, end, duration) {
+    const element = document.getElementById(id);
+    let startTimestamp = null;
+    const step = (timestamp) => {
+      if (!startTimestamp) startTimestamp = timestamp;
+      const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+      
+      if (id === 'organic-counter') {
+        element.innerHTML = Math.floor(progress * (parseInt(end) - start) + start) + '%';
+      } else if (id === 'happy-counter' || id === 'product-counter') {
+        // For counters with + sign, we don't animate the exact number
+        element.innerHTML = end;
+      }
+      
+      if (progress < 1) {
+        window.requestAnimationFrame(step);
+      }
+    };
+    window.requestAnimationFrame(step);
+  }
+
+  // Start counters when stats section comes into view
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        animateValue("product-counter", 0, 50, 1500);
+        animateValue("happy-counter", 0, 10000, 1500);
+        animateValue("organic-counter", 0, 100, 1500);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, {threshold: 0.5});
+
+  observer.observe(document.querySelector(".stats-section"));
+
+  // Product search functionality
+  document.getElementById("product-search").addEventListener("input", function() {
+    const searchTerm = this.value.toLowerCase();
+    const products = document.querySelectorAll(".product-card");
+    
+    products.forEach(product => {
+      const productName = product.getAttribute("data-name");
+      if (productName.includes(searchTerm)) {
+        product.style.display = "flex";
+      } else {
+        product.style.display = "none";
+      }
+    });
+  });
+
+  // Filter functionality
+  document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', function() {
+      // Remove active class from all buttons
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      // Add active class to clicked button
+      this.classList.add('active');
+      
+      const filter = this.getAttribute('data-filter');
+      const products = document.querySelectorAll('.product-card');
+      
+      products.forEach(product => {
+        if (filter === 'all') {
+          product.style.display = 'flex';
+        } else {
+          if (product.getAttribute('data-category') === filter) {
+            product.style.display = 'flex';
+          } else {
+            product.style.display = 'none';
+          }
+        }
+      });
+    });
+  });
+  
+  // Add hover effect to product cards
+  document.querySelectorAll('.product-card').forEach(card => {
+    card.addEventListener('mouseenter', function() {
+      const img = this.querySelector('.product-image');
+      img.style.transform = 'scale(1.1)';
+    });
+    
+    card.addEventListener('mouseleave', function() {
+      const img = this.querySelector('.product-image');
+      img.style.transform = 'scale(1)';
+    });
+  });
+  
+  // Add animation to cards when they come into view
+  const cardObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = '1';
+        entry.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, {threshold: 0.1});
+  
+  document.querySelectorAll('.product-card').forEach(card => {
+    card.style.opacity = '0';
+    card.style.transform = 'translateY(20px)';
+    card.style.transition = 'all 0.6s ease';
+    cardObserver.observe(card);
+  });
+</script>
+
+{% endblock body %}
